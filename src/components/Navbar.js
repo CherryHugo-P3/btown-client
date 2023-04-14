@@ -21,17 +21,17 @@ function Navbar() {
         <button>Home</button>{" "}
       </Link>
 
-      <Link to="/spot"> 
+      <Link to="/spots"> 
             <button>Spots</button>{" "}
+      </Link>
+
+      <Link to="/collection">  
+        <button>Collections</button>{" "}
       </Link>
       
 
       {isLoggedIn && (
         <>
-          <Link to="/collection">  
-            <button>Collections</button>
-          </Link>
-
           <button onClick={logOutUser}>Logout</button> 
           <br />
           <span>*Welcome {user && user.name}*</span>
