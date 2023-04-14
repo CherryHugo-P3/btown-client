@@ -56,13 +56,13 @@ function SignupPage(props) {
             value={name} 
             onChange={handleName} 
         />
-
+        <br></br>
         <button type="submit">Sign Up</button>
       </form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>I believe you need an account</p>
+      <p>Already have an account?</p>
       <Link to={"/login"}> Login</Link>
     </div>
   );
