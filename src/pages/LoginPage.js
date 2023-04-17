@@ -58,7 +58,7 @@ function LoginPage(props) {
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Didn't have an account yet?</p>
+      <p>Don't have an account yet?</p>
       <Link to={"/signup"}> Sign Up here</Link>
     </div>
   );

@@ -25,16 +25,19 @@ function Navbar() {
             <button>Spots</button>{" "}
       </Link>
 
-      <Link to="/collection">  
-        <button>Collections</button>{" "}
-      </Link>
+      
       
 
       {isLoggedIn && (
         <>
+
           <button onClick={logOutUser}>Logout</button> 
           <br />
+          <hr />
           <span>*Welcome {user && user.name}*</span>
+          <Link to="/collection">  
+            <button>Collections</button>
+          </Link>
         </>
       )}
       

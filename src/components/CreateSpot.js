@@ -1,87 +1,92 @@
-import axios from 'axios';
-import { useState } from 'react';
+import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function CreateSpot(){
-    const [image, setImage] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
-    const [userId] = useState('');
-    const navigate = useNavigate();
-    const API_URL = "http://localhost:5005";
-    const handleSubmit = (e) => {
-        e.preventDefault();
+const API_URL = "http://localhost:5005";
 
-        const newSpot = {
-            title: title,
-            description:description,
-            category:category,
-            image: image,
-            userId: userId,
-        };
-        //console.log to check 
-        axios
-        .post(`${API_URL}/api/spots` , newSpot)
-        .then( response => {
-            console.log("this is my response", response);
-          
-        })
-          
-        .catch( error => console.log("error creating spot", error))
+function CreateSpot({ refreshSpots }) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  //const [image, setImage] = useState("");
 
+  const navigate = useNavigate();
 
-        //clear the form
-        setImage("");
-        setTitle("");
-        setCategory("");
-        setDescription("");
-        navigate("/spots"); //redirect to the route
-        
-    }
-    
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const requestBody = { name, description, category };
 
-
-    return(
-        <div>
-             <form onSubmit={handleSubmit}>
-        <label>Title: </label>
-        <input 
-            type="text" 
-            name="title" 
-            value={title} 
-            onChange={(e) => { setTitle(e.target.value) }}
-        />
-        
+    const storedToken = localStorage.getItem('authToken');
   
-        <label>Image: </label>
-        <input 
-            type="text" 
-            name="img" 
-            value={image} 
-            onChange={(e) => { setImage(e.target.value) }}
-        />
-  
-        <label>Category: </label>
-        <input 
-            type="number" 
-            name="pricePerDay" 
-            value={category} 
-            onChange={(e) => { setCategory(e.target.value) }}
-        />
-        <label>Description: </label>
-        <input 
-            type="text" 
-            name="title" 
-            value={description} 
-            onChange={(e) => { setDescription(e.target.value) }}
-        />
-
-
-        <button type='submit'>Add Spot</button>
-      </form>
-        </div>
+    axios
+      .post(`${API_URL}/spots`, 
+      requestBody, 
+      { headers: { Authorization: `Bearer ${storedToken}` } }
     )
+      .then((response) => {
+        const createdSpot = response.data
+
+        setName("");
+        setDescription("");
+        setCategory("");
+        //setImage("");
+        refreshSpots();
+        //navigate("/collection");
+        return createdSpot
+      })
+      .catch((error) => console.log(error));
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Create a new Spot and add it to your collection.</h2>
+      <div className="CreateSpot">
+        <label htmlFor="name">Name:</label>
+        <input 
+          type="text"
+          name="name"
+          value={name}
+          onChange={(event) => setName(event.target.value)} 
+        />
+      </div>  
+      <br />
+      <div className="CreateSpot">
+        <label htmlFor="description">Description:</label>
+        <textarea 
+          type="text"
+          name="description"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)} 
+        ></textarea>
+      </div>
+      <br />
+      <div>
+        <label htmlFor="category">Category:</label>
+        <select 
+          id="category" 
+          name ="category" 
+          onChange={(event) => setCategory(event.target.value)}
+        >
+          <option value="">-Select a category-</option>
+          <option value="Food">Food</option>
+          <option value="Viewpoint">Viewpoint</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+
+      {/* <div>
+        <label htmlFor="image">Image:</label>
+        <input 
+          type="text" 
+          id="image"
+          value={image}
+          onChange={(event) => setImage(event.target.value)}  
+        />
+      </div> */}
+      <br />
+      <button type="submit">Create a Spot</button>
+    </form>
+  );
 }
 
 export default CreateSpot;

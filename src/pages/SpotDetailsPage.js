@@ -21,9 +21,10 @@ function SpotDetailsPage() {
 
     return (
         <div className="SpotDetailsPage">
-            <h1>{spot.title}</h1>
+            <h1>{spot.name}</h1>
         </div>
     );
 
 }
 
+export default SpotDetailsPage;
