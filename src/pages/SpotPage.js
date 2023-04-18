@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 //import SpotCard from "../components/SpotCard";
 
 
-const API_URL = "http://localhost:5005";
+
 
 function SpotPage() {
   const [spots, setSpots] = useState([]);
@@ -17,7 +17,7 @@ function SpotPage() {
   }, []);
 
   const getAllSpots = () => {
-    axios.get(`${API_URL}/spots`)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/spots`)
       .then((response) => setSpots(response.data))
       .catch((error) => console.log(error));
   };
