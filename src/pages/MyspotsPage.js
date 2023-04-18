@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import CreateSpot from "../components/CreateSpot";
 
-const API_URL = "http://localhost:5005";
+
 
 function MyspotsPage() {
   const [myspots, setMyspots] = useState([]);
@@ -10,7 +10,7 @@ function MyspotsPage() {
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/myspots`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/myspots`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setMyspots(response.data))
@@ -23,7 +23,7 @@ function MyspotsPage() {
   const refreshMyspots = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/myspots`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/myspots`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) =>

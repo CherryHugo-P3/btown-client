@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 
 
 
-const API_URL = "http://localhost:5005";
+
 
 function CollectionList() {
   const [collection, setCollection] = useState([]);
@@ -17,7 +17,7 @@ function CollectionList() {
   }, []);
 
   const getMyCollections = () => {
-    axios.get(`${API_URL}/collection`)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/collection`)
       .then((response) => setCollection(response.data))
       .catch((error) => console.log(error));
   };

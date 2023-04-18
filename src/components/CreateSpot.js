@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+
 
 function CreateSpot({ refreshSpots }) {
   const [name, setName] = useState("");
@@ -19,7 +19,7 @@ function CreateSpot({ refreshSpots }) {
     const storedToken = localStorage.getItem('authToken');
   
     axios
-      .post(`${API_URL}/spots`, 
+      .post(`${process.env.REACT_APP_SERVER_UR}/spots`, 
       requestBody, 
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )

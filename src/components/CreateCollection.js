@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
+
 
 function CreateCollection({ refreshCollections }) {
     const [name, setName] = useState("");
@@ -14,7 +14,7 @@ function CreateCollection({ refreshCollections }) {
         const storedToken = localStorage.getItem('authToken');
 
         axios
-            .post(`${API_URL}/collection`,
+            .post(`${process.env.REACT_APP_SERVER_URL}/collection`,
                 requestBody,
                 { headers: { Authorization: `Bearer ${storedToken}` } }    
             )
