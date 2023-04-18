@@ -17,7 +17,7 @@ function SpotPage() {
   }, []);
 
   const getAllSpots = () => {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/spots`)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/spots`)
       .then((response) => setSpots(response.data))
       .catch((error) => console.log(error));
   };
