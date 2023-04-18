@@ -1,10 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import CreateCollection from "../components/CreateCollection";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/auth.context";
+
+
 
 const API_URL = "http://localhost:5005";
 
 function CollectionList() {
-  const [collections, setCollections] = useState([]);
+  const [collection, setCollection] = useState([]);
+
+  const { isLoggedIn } = useContext(AuthContext)
 
   useEffect(() => {
     getMyCollections();
@@ -12,19 +18,27 @@ function CollectionList() {
 
   const getMyCollections = () => {
     axios.get(`${API_URL}/collection`)
-      .then((response) => setCollections(response.data))
+      .then((response) => setCollection(response.data))
       .catch((error) => console.log(error));
   };
 
   return (
     <div>
-      <h1>My Collections</h1>
-      {collections.map((collections) => (
-        <div key={collections._id}>
-        <h2>{collections.name}</h2>
-        </div>
-      ))}
 
+      {isLoggedIn && (
+        <>
+          <h1>My Collections</h1>
+          <CreateCollection refreshCollections={getMyCollections} />
+
+          {collection.map((collection) => (
+            <div key={collection._id}>
+              <h2>{collection.name}</h2>
+              <p>{collection.description}</p>
+            </div>
+          ))}
+        </>
+      )}
+        
 
     </div>
     
@@ -34,3 +48,4 @@ function CollectionList() {
 }
 
 export default CollectionList;
+
