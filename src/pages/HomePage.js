@@ -20,7 +20,7 @@ function HomePage() {
         </Carousel.Caption>
       </Carousel.Item>
       
-       <Carousel.Item interval={500}>
+       <Carousel.Item interval={1000}>
        <img
          className="d-block w-100"
          src="/img/nite view TST.jpg"

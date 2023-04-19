@@ -19,7 +19,7 @@ function CreateSpot({ refreshSpots }) {
     const storedToken = localStorage.getItem('authToken');
   
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/api/spots`, 
+      .post(`${process.env.REACT_APP_SERVER_URL}/spots`, 
       requestBody, 
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )

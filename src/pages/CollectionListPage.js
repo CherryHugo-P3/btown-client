@@ -17,7 +17,7 @@ function CollectionList() {
   }, []);
 
   const getMyCollections = () => {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/collection`)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/collection`)
       .then((response) => setCollection(response.data))
       .catch((error) => console.log(error));
   };
