@@ -1,6 +1,6 @@
 // src/components/Navbar.js
 
-import {  useLocation } from "react-router-dom";
+import {  useLocation, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
@@ -24,13 +24,13 @@ function Navbar() {
     <nav>
       <Nav variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
-        <Nav.Link href="/"><Button variant="outline-secondary">Home</Button></Nav.Link>
+        <Nav.Link as={Link} to="/"><Button variant="outline-secondary">Home</Button></Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/spots"><Button variant="outline-secondary">Spots</Button></Nav.Link>
+        <Nav.Link as={Link} to="/spots"><Button variant="outline-secondary">Spots</Button></Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/collection"><Button variant="outline-secondary">Collections</Button></Nav.Link>
+        <Nav.Link as={Link} to="/collection"><Button variant="outline-secondary">Collections</Button></Nav.Link>
         </Nav.Item>
     </Nav>
 
@@ -66,7 +66,7 @@ function Navbar() {
         <Nav.Link href="/collection"><Button variant="secondary" size="sm">Collections</Button></Nav.Link>
         </Nav.Item> */}
         <Nav.Item>
-        <Nav.Link href="/"><Button variant="secondary" size="sm" onClick={logOutUser}>Logout</Button></Nav.Link>
+        <Nav.Link as={Link} to="/"><Button variant="secondary" size="sm" onClick={logOutUser}>Logout</Button></Nav.Link>
         </Nav.Item>
         </Nav>
           {/* <Link to="/collection">  
@@ -83,12 +83,13 @@ function Navbar() {
             !isLoginPage && !isSignupPage && (
               <> 
               <Nav className="justify-content-end" activeKey="/home">
-              <Nav.Item>
-              <Nav.Link href="/signup"><Button variant="secondary" size="sm">Sign Up</Button></Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-              <Nav.Link href="/login"><Button variant="secondary" size="sm">Login</Button></Nav.Link>
-              </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link  as={Link} to="/signup"><Button variant="secondary" size="sm">Sign Up</Button></Nav.Link>
+                </Nav.Item>
+              
+                <Nav.Item>
+                  <Nav.Link as={Link} to="/login"><Button variant="secondary" size="sm">Login</Button></Nav.Link>
+                </Nav.Item>
               </Nav>
 
       
