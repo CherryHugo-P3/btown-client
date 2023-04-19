@@ -10,7 +10,7 @@ function SpotDetailsPage() {
 
     const getSpotDetails = () => {
         axios
-            .get(`${process.env.REACT_APP_SERVER_URL}/spots/${spotId}`)
+            .get(`${process.env.REACT_APP_SERVER_URL}/api/spots/${spotId}`)
             .then((response) => setSpot(response.data))
             .catch((error) => console.log(error));
     };

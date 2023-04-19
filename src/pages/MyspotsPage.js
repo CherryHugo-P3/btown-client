@@ -10,7 +10,7 @@ function MyspotsPage() {
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/myspots`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/myspots`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setMyspots(response.data))
@@ -23,7 +23,7 @@ function MyspotsPage() {
   const refreshMyspots = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/myspots`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/myspots`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) =>

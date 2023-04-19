@@ -14,7 +14,7 @@ function CreateCollection({ refreshCollections }) {
         const storedToken = localStorage.getItem('authToken');
 
         axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/collection`,
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/collection`,
                 requestBody,
                 { headers: { Authorization: `Bearer ${storedToken}` } }    
             )
