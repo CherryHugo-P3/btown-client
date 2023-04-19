@@ -62,7 +62,7 @@ function SignupPage(props) {
         />
         
 
- <Button variant="outline-secondary"type="submit">Sign Up</Button>
+        <Link to="/login"><Button variant="outline-secondary"type="submit">Sign Up</Button></Link>
         {/* <button type="submit">Sign Up</button> */}
       </form>
 
