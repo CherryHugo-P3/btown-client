@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:5005";
+
 
 function AllCollections() {
   const [collections, setCollections] = useState([]);
@@ -14,7 +14,7 @@ function AllCollections() {
   }, []);
 
   const getAllCollections = () => {
-    axios.get(`${API_URL}/collection/`, {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/collection`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then((response) => setCollections(response.data))
