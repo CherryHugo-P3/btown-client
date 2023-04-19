@@ -4,7 +4,7 @@ import {  useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
-import Carousel from 'react-bootstrap/Carousel';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
