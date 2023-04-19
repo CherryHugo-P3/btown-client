@@ -1,6 +1,6 @@
 // src/components/Navbar.js
 
-import { useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
