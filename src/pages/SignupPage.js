@@ -4,7 +4,7 @@ import authService from "../services/auth.service";
 
 // import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 
 
 
@@ -62,8 +62,8 @@ function SignupPage(props) {
         />
         
 
-        <Link to="/login"><Button variant="outline-secondary"type="submit">Sign Up</Button></Link>
-        {/* <button type="submit">Sign Up</button> */}
+        {/* <Button variant="outline-secondary" type="submit">Sign Up</Button> */}
+        <button type="submit">Sign Up</button>
       </form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
