@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+//import { Link } from "react-router-dom";
 
 
 
 function CreateCollection({ refreshCollections }) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    //const [isPrivate, setisPrivate] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -14,7 +16,7 @@ function CreateCollection({ refreshCollections }) {
         const storedToken = localStorage.getItem('authToken');
 
         axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/collection`,
+        .post(`${process.env.REACT_APP_SERVER_URL}/api/collection`,
                 requestBody,
                 { headers: { Authorization: `Bearer ${storedToken}` } }    
             )
@@ -51,12 +53,20 @@ function CreateCollection({ refreshCollections }) {
                 ></textarea>
             </div>
             <br/>
+            <label htmlFor="private">Private:</label>
+            {/* <input
+                type="checkbox"
+                name="private"
+                checked={isPrivate}
+                onChange={(event) => setisPrivate(event.target.checked)}
+            /> */}
+            <br />
             <button type="submit">Create a Collection</button>
+            {/* <Link to="/collection">{" "}<button type="submit">Cancel</button></Link> */}
         </form>
     )
-
-
 }
 
-
 export default CreateCollection
+
+

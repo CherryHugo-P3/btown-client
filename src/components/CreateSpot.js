@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -10,7 +10,7 @@ function CreateSpot({ refreshSpots }) {
   const [category, setCategory] = useState("");
   //const [image, setImage] = useState("");
 
-  // const navigate = useNavigate();
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ function CreateSpot({ refreshSpots }) {
     const storedToken = localStorage.getItem('authToken');
   
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/api/spots`, 
+    .post(`${process.env.REACT_APP_SERVER_URL}/api/spots`, 
       requestBody, 
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )
