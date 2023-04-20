@@ -4,6 +4,7 @@ import authService from "../services/auth.service";
 
 // import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 // import Button from 'react-bootstrap/Button';
 
 
@@ -62,7 +63,7 @@ function SignupPage(props) {
         />
         
 
-        {/* <Button variant="outline-secondary" type="submit">Sign Up</Button> */}
+       
         <button type="submit">Sign Up</button>
       </form>
 

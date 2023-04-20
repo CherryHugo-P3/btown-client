@@ -51,16 +51,7 @@ function CreateCollection({ refreshCollections }) {
                     value={description}
                     onChange={(event) => setDescription(event.target.value)}
                 ></textarea>
-            </div>
-            <br/>
-            <label htmlFor="private">Private:</label>
-            {/* <input
-                type="checkbox"
-                name="private"
-                checked={isPrivate}
-                onChange={(event) => setisPrivate(event.target.checked)}
-            /> */}
-            <br />
+            </div>            
             <button type="submit">Create a Collection</button>
             {/* <Link to="/collection">{" "}<button type="submit">Cancel</button></Link> */}
         </form>

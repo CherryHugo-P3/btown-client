@@ -3,6 +3,7 @@ import CreateCollection from "../components/CreateCollection";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import AllCollections from "../components/AllCollections"
+import { Link } from "react-router-dom";
 
 
 
@@ -17,12 +18,12 @@ function CollectionList() {
   }, []);
 
   const getMyCollections = () => {
-    
     axios.get(`${process.env.REACT_APP_SERVER_URL}/api/collection/mycollection`, { headers: { Authorization: `Bearer ${storedToken}` }})
-       
       .then((response) => setCollection(response.data))
       .catch((error) => console.log(error));
   };
+
+
 
   return (
     <div>
@@ -37,17 +38,18 @@ function CollectionList() {
               <br />
               <h2>{collection.name}</h2>
               <p>{collection.description}</p>
+              <Link to={`/collection/${collection._id}`}>
+                <button>View Collection</button>
+              </Link>
             </div>
           ))}
           <AllCollections />
         </>
       )}
         
-
     </div>
     
   )
-
 
 }
 

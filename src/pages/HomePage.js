@@ -20,17 +20,18 @@ function HomePage() {
         </Carousel.Caption>
       </Carousel.Item>
       
-       <Carousel.Item interval={1000}>
+       <Carousel.Item interval={1500}>
        <img
          className="d-block w-100"
          src="/img/nite view TST.jpg"
          alt="Second slide"
        />
        <Carousel.Caption>
-         <h3>Second slide label</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+         <h3>Victoria Harbour</h3>
+         <p>The harbour is a major tourist attraction of Hong Kong. Lying in the middle of the territory's dense urban region, the harbour is the site of annual fireworks displays and its promenades are used as gathering places for residents and also tourists.</p>
        </Carousel.Caption>
      </Carousel.Item>
+     
   </Carousel>
   </div>
   )
