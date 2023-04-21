@@ -6,7 +6,6 @@ import { Row, Col, Form, Button, Card } from "react-bootstrap";
 
 
 
-const API_URL = "http://localhost:5005";
  
 function CollectionDetailsPage(props) {
   const [name, setName] = useState("");
@@ -20,7 +19,7 @@ function CollectionDetailsPage(props) {
  
   useEffect(() => {
     axios
-      .get(`${API_URL}/collection/${collectionId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/collection/${collectionId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         const collection = response.data;
         setName(collection.name);
@@ -39,7 +38,7 @@ function CollectionDetailsPage(props) {
  
     // Make a PUT request to update the project
     axios
-      .put(`${API_URL}/collection/${collectionId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}`}})
+      .put(`${process.env.REACT_APP_SERVER_URL}/api/collection/${collectionId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         // Once the request is resolved successfully and the project
         // is updated we navigate back to the details page
@@ -50,7 +49,7 @@ function CollectionDetailsPage(props) {
   const deleteCollection = () =>{
  
     axios
-    .delete(`${API_URL}/collection/${collectionId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
+    .delete(`${process.env.REACT_APP_SERVER_URL}/api/collection/${collectionId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
     .then(() => {
         navigate(`/collection`)
     })
