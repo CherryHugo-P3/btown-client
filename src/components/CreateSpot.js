@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Row, Col, Form, Button, Card } from "react-bootstrap";
+import {  Form, Button, Card } from "react-bootstrap";
 
 
-const API_URL = "http://localhost:5005";
+
 
 function CreateSpot({ refreshSpots }) {
   const [name, setName] = useState("");

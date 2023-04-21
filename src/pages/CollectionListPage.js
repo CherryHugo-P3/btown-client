@@ -6,7 +6,7 @@ import AllCollections from "../components/AllCollections"
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//const API_URL = "http://localhost:5005";
+
 
 function CollectionList() {
   const [collection, setCollection] = useState([]);
@@ -43,7 +43,7 @@ function CollectionList() {
                   {collection.map((collection) => (
                     <div key={collection._id} className="col-md-4">
                       <div className="card mb-4 shadow-sm">
-                        {/* <img src={collection.imageUrl} alt={collection.name} /> */}
+                        <img src={collection.imageUrl} alt={collection.name} />
                         <div className="card-body">
                           <p className="card-text">{collection.description}</p>
                           <div className="d-flex justify-content-between align-items-center">
