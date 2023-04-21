@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import CreateSpot from "../components/CreateSpot";
 import { AuthContext } from "../context/auth.context";
+import "../components/SpotPage.css";
 //import SpotCard from "../components/SpotCard";
 
 

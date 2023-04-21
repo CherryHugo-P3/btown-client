@@ -33,7 +33,7 @@ const storedToken = localStorage.getItem('authToken');
         setCategory("");
         setImage("");
         refreshSpots();
-        navigate("/spots");
+        navigate("/");
         return createdSpot
       })
       .catch((error) => console.log(error));
