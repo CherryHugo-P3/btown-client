@@ -1,8 +1,7 @@
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
+//const API_URL = "http://localhost:5005";
 
 function AllCollections() {
   const [collections, setCollections] = useState([]);
@@ -14,7 +13,7 @@ function AllCollections() {
   }, []);
 
   const getAllCollections = () => {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/collection`, {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/collection/`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then((response) => setCollections(response.data))
@@ -23,12 +22,14 @@ function AllCollections() {
 
   return (
     <div>
-      <h1>All Collections</h1>
+      <h1 className="fw-light">All Collections</h1>
+      <hr />
       {collections.map((collection) => (
         <div key={collection._id}>
           <br />
           <h2>{collection.name}</h2>
           <p>{collection.description}</p>
+          
         </div>
       ))}
     </div>

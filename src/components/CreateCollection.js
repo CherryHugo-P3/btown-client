@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-//import { Link } from "react-router-dom";
+import { Form, Button, Card } from "react-bootstrap";
 
 
+//const API_URL = "http://localhost:5005";
 
 function CreateCollection({ refreshCollections }) {
     const [name, setName] = useState("");
@@ -16,7 +17,7 @@ function CreateCollection({ refreshCollections }) {
         const storedToken = localStorage.getItem('authToken');
 
         axios
-        .post(`${process.env.REACT_APP_SERVER_URL}/api/collection`,
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/collection`,
                 requestBody,
                 { headers: { Authorization: `Bearer ${storedToken}` } }    
             )
@@ -32,29 +33,37 @@ function CreateCollection({ refreshCollections }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="CreateCollection">
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
-                />
-            </div>
-            <br/>
-            <div className="CreateCollection">
-                <label htmlFor="description">Description:</label>
-                <textarea
-                    type="text"
-                    name="description"
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value)}
-                ></textarea>
-            </div>            
-            <button type="submit">Create a Collection</button>
-            {/* <Link to="/collection">{" "}<button type="submit">Cancel</button></Link> */}
-        </form>
+        <>
+        <h3 className="fw-light">Create the Collection</h3>
+    <Card style={{ width: '28rem', margin: '0 auto' }}>
+      <Card.Body>
+        <Form onSubmit={handleSubmit}>     
+          <Form.Group>
+            <Form.Label>Name:</Form.Label>
+            <Form.Control
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Description:</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <hr />
+          </Form.Group>
+          <div className="btn-group" role="group" aria-label="Basic example">
+          <Button type="submit" className="btn btn-primary">Create Collection</Button>{' '}
+          </div>
+        </Form>
+      </Card.Body>
+    </Card>
+    </>
     )
 }
 

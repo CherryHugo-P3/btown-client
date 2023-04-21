@@ -8,10 +8,10 @@ function HomePage() {
       <h1>- Uncover Hong Kong's hidden gems -</h1>
     
     <Carousel>
-      <Carousel.Item interval={1000}>
+      <Carousel.Item interval={2500}>
         <img
           className="d-block w-100"
-          src="img/Choi Hung View.jpg"
+          src="/img/Choi Hung View.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -20,7 +20,7 @@ function HomePage() {
         </Carousel.Caption>
       </Carousel.Item>
       
-       <Carousel.Item interval={1500}>
+       <Carousel.Item interval={3000}>
        <img
          className="d-block w-100"
          src="/img/nite view TST.jpg"

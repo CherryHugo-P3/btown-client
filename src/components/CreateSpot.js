@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -84,7 +84,8 @@ function CreateSpot({ refreshSpots }) {
         />
       </div> */}
       <br />
-      <button type="submit">Create a Spot</button>
+      <Button type="submit" variant="warning">Create a Spot</Button>
+      {/* <button type="submit">Create a Spot</button> */}
     </form>
   );
 }

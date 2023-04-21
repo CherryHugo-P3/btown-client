@@ -4,16 +4,14 @@ import CreateSpot from "../components/CreateSpot";
 import { AuthContext } from "../context/auth.context";
 //import SpotCard from "../components/SpotCard";
 
-import Card from 'react-bootstrap/Card';
-
-
-
 
 function SpotPage() {
   const [spots, setSpots] = useState([]);
   const [collection, setCollection] = useState([]);
   const [collectionId, setCollectionId] = useState();
   const [spotId, setSpotId] = useState();
+  const [showForm, setShowForm] = useState(false);
+
 
   const {isLoggedIn } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken');
@@ -29,11 +27,14 @@ function SpotPage() {
   const addToCollection = (event) => {
     event.preventDefault();
     console.log(collectionId, spotId)
-    axios.put(`${process.env.REACT_APP_SERVER_URL}/api/collection/${collectionId}/${spotId}`, {
-      headers: { Authorization: `Bearer ${storedToken}` }
+    axios.put(`${process.env.REACT_APP_SERVER_URL}/api/collection/${collectionId}/${spotId}`, null, {
+      headers: { Authorization: `Bearer ${storedToken}` },
     })
-    .then((response) => setSpots(response.data))
+    .then(() => {
+      setShowForm(false);
+    })
     .catch((error) => console.log(error));
+    
   }
 
   const getMyCollections = () => {
@@ -61,63 +62,49 @@ function SpotPage() {
             <CreateSpot refreshSpots={getAllSpots} />
         </>
       )}
-{/* {spots.map((spot) => (
+  
+      {spots.map((spot) => (
         <div key={spot._id}>
           <h2>{spot.name}</h2>
           <p>{spot.description}</p>
           <p>{spot.category}</p>
           <img src={spot.image} alt={spot.name} />
-        
-           // form
+          {/* // form
           // select 
             //collections.map
           //   options collection._id -->name
           // input hidden spot._id 
-          // button submit 
-          <form onSubmit= { (event) =>{addToCollection(event)} }>
-            <select name="collectionId" onChange={(event) => {setCollectionId(event.target.value)}}> 
-              {collection.map((collection) => {
-                return <option value={collection._id}>{collection.name}</option>
-              } )}
-            
-            
+          // button submit */}
 
-            </select>
-            <button type="submit" onClick={() => setSpotId(spot._id)}>Add to collection</button>
-          </form>  
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export default SpotPage; */}
-
-
-      {spots.map((spot) => (
-        <div key={spot._id} >
-         
-        <Card>
-        <Card.Body>
-        <Card.Title>{spot.name}</Card.Title>
-        </Card.Body>
-        <Card.Img variant="bottom" src={spot.image} alt={spot.name}/>
-        <Card.Text>{spot.description}</Card.Text>
-        <Card.Text>{spot.category}</Card.Text>
-        </Card>
-
-
-          <form onSubmit= { (event) =>{addToCollection(event)} }>
-            <select name="collectionId" onChange={(event) => {setCollectionId(event.target.value)}}> 
-              {collection.map((collection) => {
-                return <option value={collection._id}>{collection.name}</option>
-              } )}
-            
-            
-
-            </select>
-            <button type="submit" onClick={() => setSpotId(spot._id)}>Add to collection</button>
-          </form>  
+          {isLoggedIn && (
+          <button type="submit" onClick={() => { setShowForm(true); setSpotId(spot._id)}}>Add to collection</button>
+          )}
+          {showForm && (
+            <form onSubmit={addToCollection}>
+              <select
+                name="collectionId"
+                onChange={(event) => {
+                  setCollectionId(event.target.value);
+                }}
+              >
+                <option value="">Select a collection</option>
+                {collection.map((collection) => (
+                  <option key={collection._id} value={collection._id}>
+                    {collection.name}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="hidden"
+                name="spotId"
+                value={spot._id}
+                onChange={(event) => {
+                  setSpotId(event.target.value);
+                }}
+              />
+              <button type="submit">Confirm</button>
+            </form> 
+          )}
         </div>
       ))}
     </div>
@@ -125,3 +112,6 @@ export default SpotPage; */}
 }
 
 export default SpotPage;
+
+
+
