@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Row, Col, Form, Button, Card } from "react-bootstrap";
 
 
+const API_URL = "http://localhost:5005";
 
 function CreateSpot({ refreshSpots }) {
   const [name, setName] = useState("");
@@ -31,7 +33,7 @@ const storedToken = localStorage.getItem('authToken');
         setCategory("");
         setImage("");
         refreshSpots();
-        navigate("/collection");
+        navigate("/spots");
         return createdSpot
       })
       .catch((error) => console.log(error));
@@ -54,55 +56,60 @@ const storedToken = localStorage.getItem('authToken');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Create a new Spot and add it to your collection.</h2>
-      <div className="CreateSpot">
-        <label htmlFor="name">Name:</label>
-        <input 
-          type="text"
-          name="name"
-          value={name}
-          onChange={(event) => setName(event.target.value)} 
-        />
-      </div>  
-      <br />
-      <div className="CreateSpot">
-        <label htmlFor="description">Description:</label>
-        <textarea 
-          type="text"
-          name="description"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)} 
-        ></textarea>
-      </div>
-      <br />
-      <div>
-        <label htmlFor="category">Category:</label>
-        <select 
-          id="category" 
-          name ="category" 
-          onChange={(event) => setCategory(event.target.value)}
-        >
-          <option value="">-Select a category-</option>
-          <option value="Food">Food</option>
-          <option value="Viewpoint">Viewpoint</option>
-          <option value="Others">Others</option>
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="image">Image:</label>
-        <input 
-          type="file" 
-          id="image"
-          name="image"
-          onChange={handleFileUpload}  
-        />
-      </div>
-      <br />
-      <button type="submit">Create a Spot</button>
-    </form>
+    <>
+  <h2 className="fw-light">Create a new Spot and add it to your collection.</h2>
+  <Card style={{ width: '28rem', margin: '0 auto' }}>
+    <Card.Body>
+      <Form onSubmit={handleSubmit}>     
+        <Form.Group>
+          <Form.Label>Image:</Form.Label>
+          <Form.Control 
+            type="file" 
+            id="image"
+            name="image"
+            onChange={handleFileUpload}  
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Name:</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Description:</Form.Label>
+          <Form.Control
+            as="textarea"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Category:</Form.Label>
+          <Form.Control 
+            as="select"
+            id="category" 
+            name ="category" 
+            onChange={(event) => setCategory(event.target.value)}
+          >
+            <option value="">-Select a category-</option>
+            <option value="Food">Food</option>
+            <option value="Viewpoint">Viewpoint</option>
+            <option value="Others">Others</option>
+          </Form.Control>
+          <hr />
+        </Form.Group>
+        <Button type="submit" className="btn btn-primary">Create a Spot</Button>
+      </Form>
+    </Card.Body>
+  </Card>
+</>
   );
 }
 
 export default CreateSpot;
+
