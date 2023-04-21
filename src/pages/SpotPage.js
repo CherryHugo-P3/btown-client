@@ -5,6 +5,8 @@ import { AuthContext } from "../context/auth.context";
 //import SpotCard from "../components/SpotCard";
 
 
+
+
 function SpotPage() {
   const [spots, setSpots] = useState([]);
   const [collection, setCollection] = useState([]);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -8,18 +8,18 @@ function CreateSpot({ refreshSpots }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  //const [image, setImage] = useState("");
-
-
+  const [image, setImage] = useState("");
+const storedToken = localStorage.getItem('authToken');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const requestBody = { name, description, category };
+    const requestBody = { name, description, category, image };
 
-    const storedToken = localStorage.getItem('authToken');
+    
   
     axios
-    .post(`${process.env.REACT_APP_SERVER_URL}/api/spots`, 
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/spots`, 
       requestBody, 
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )
@@ -29,12 +29,28 @@ function CreateSpot({ refreshSpots }) {
         setName("");
         setDescription("");
         setCategory("");
-        //setImage("");
+        setImage("");
         refreshSpots();
-        //navigate("/collection");
+        navigate("/collection");
         return createdSpot
       })
       .catch((error) => console.log(error));
+  };
+
+  const handleFileUpload = (e) => {
+    e.preventDefault();
+   
+    const uploadData = new FormData();
+    uploadData.append("image", e.target.files[0]);
+    axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/spots/upload`, uploadData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log("image", response.data.image)
+        setImage(response.data.image)
+        
+      });
   };
 
   return (
@@ -74,18 +90,17 @@ function CreateSpot({ refreshSpots }) {
         </select>
       </div>
 
-      {/* <div>
+      <div>
         <label htmlFor="image">Image:</label>
         <input 
-          type="text" 
+          type="file" 
           id="image"
-          value={image}
-          onChange={(event) => setImage(event.target.value)}  
+          name="image"
+          onChange={handleFileUpload}  
         />
-      </div> */}
+      </div>
       <br />
-      <Button type="submit" variant="warning">Create a Spot</Button>
-      {/* <button type="submit">Create a Spot</button> */}
+      <button type="submit">Create a Spot</button>
     </form>
   );
 }

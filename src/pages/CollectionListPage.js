@@ -43,7 +43,7 @@ function CollectionList() {
                   {collection.map((collection) => (
                     <div key={collection._id} className="col-md-4">
                       <div className="card mb-4 shadow-sm">
-                        <img src={collection.imageUrl} alt={collection.name} />
+                        {/* <img src={collection.imageUrl} alt={collection.name} /> */}
                         <div className="card-body">
                           <p className="card-text">{collection.description}</p>
                           <div className="d-flex justify-content-between align-items-center">
